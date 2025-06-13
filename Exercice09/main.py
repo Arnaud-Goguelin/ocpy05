@@ -50,7 +50,8 @@ class Rectangle:
         return 2 * (self.width + self.length)
 
     def __str__(self) -> str:
-        return f"Rectangle with width = {self.width}, length = {self.length}, perimeter = {self.calculate_perimeter()}, and area = {self.calculate_area()}."
+        return (f"Rectangle with width = {self.width}, length = {self.length}, "
+                f"perimeter = {self.calculate_perimeter()}, and area = {self.calculate_area()}.")
 
 
 if __name__ == "__main__":
