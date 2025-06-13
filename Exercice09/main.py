@@ -11,25 +11,11 @@ class Rectangle:
         self.width = self.__validate_side(width)
         self.length = self.__validate_side(length)
 
-    @property
-    def width(self) -> int | float:
-        """Getter for width"""
-        return self._width
-
-    @width.setter
-    def width(self, value):
-        """setter for width"""
-        self._width = self.__validate_side(value)
-
-    @property
-    def length(self) -> int | float:
-        """Getter for length"""
-        return self._length
-
-    @length.setter
-    def length(self, value):
-        """setter for length"""
-        self._length = self.__validate_side(value)
+    def __setattr__(self, name: str, value: int | float) -> None:
+        """Intercepts attribute assignment for validation."""
+        if name in ("width", "length"):
+            value = self.__validate_side(value)
+        super().__setattr__(name, value)
 
     @staticmethod
     def __validate_side(value: int | float) -> int | float:
@@ -50,8 +36,10 @@ class Rectangle:
         return 2 * (self.width + self.length)
 
     def __str__(self) -> str:
-        return (f"Rectangle with width = {self.width}, length = {self.length}, "
-                f"perimeter = {self.calculate_perimeter()}, and area = {self.calculate_area()}.")
+        return (
+            f"Rectangle with width = {self.width}, length = {self.length}, "
+            f"perimeter = {self.calculate_perimeter()}, and area = {self.calculate_area()}."
+        )
 
 
 if __name__ == "__main__":
