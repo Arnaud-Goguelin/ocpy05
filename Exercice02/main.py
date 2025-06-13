@@ -12,7 +12,7 @@ def choose_a_student(students: dict[str : dict[str:int]]) -> str:
         ValueError: If input is invalid or student not found
 
     """
-    student = input("Please, choose a student:")
+    student = input("Please, choose a student:").strip()
     if student.isdigit():
         raise ValueError("Input must be a name")
     if student not in students:

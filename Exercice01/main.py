@@ -9,12 +9,21 @@ def ask_for_name() -> str:
     Returns:
         str: The validated name provided by the user.
     """
-    name = input("What is your name? ")
+    name = input("What is your name? ").strip()
     if not name:
         raise ValueError("Input cannot be empty")
     if name.isdigit():
         raise ValueError("Input must be a string")
     return name
+
+
+def ask_for_adress():
+    adress = input("What is your adress? ").strip()
+    if not adress:
+        raise ValueError("Input cannot be empty")
+    if adress.isdigit():
+        raise ValueError("Input must be a string")
+    return adress
 
 
 def ask_for_age() -> str:
@@ -28,7 +37,7 @@ def ask_for_age() -> str:
     Returns:
         str: The validated age provided by the user.
     """
-    age = input("What is your age? ")
+    age = input("What is your age? ").strip()
     if not age:
         raise ValueError("Input cannot be empty")
     if not age.isdigit():
@@ -47,15 +56,16 @@ def print_greetings(name: str, age: str) -> None:
     Returns:
         None
     """
-    print(f"Hello, I'm {name} and I'm {age} years old.")
+    print(f"Hello, I'm {name} {last_name} and I'm {age} years old.")
     return None
 
 
 if __name__ == "__main__":
     try:
         name = ask_for_name()
+        last_name = ask_for_name()
         age = ask_for_age()
-        print_greetings(name, age)
+        print_greetings(name, last_name, age)
     except ValueError as error:
         print("An error happened:")
         print(error)
