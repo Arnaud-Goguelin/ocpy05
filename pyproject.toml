@@ -34,7 +34,6 @@ exclude =[
     "dist",
     ".venv",
     "*.pyc",
-    "Exercice04",
     "Exercice05",
     "Exercice06",
     "Exercice07",
