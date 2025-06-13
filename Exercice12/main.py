@@ -11,12 +11,10 @@ class Book:
         year (int): The publication year of the book. Must be a non-negative integer.
     """
 
-    def __init__(self, title: str, author: str, year: datetime):
+    def __init__(self, title: str, author: str, year: int):
         self.title: str = self.validate_title_and_author(title)
         self.author: str = self.validate_title_and_author(author)
-        # as we stay in python we can manipulate a datetime object, if we need to communicate with other app,
-        # using isoformat() would be better
-        self.year: datetime = self.__validate_year(year)
+        self.year: int = self.__validate_year(year)
 
     def __setattr__(self, name: str, value: str | int) -> None:
         """Intercepts attribute assignment for validation."""
@@ -38,12 +36,14 @@ class Book:
         return value
 
     @staticmethod
-    def __validate_year(value: datetime) -> datetime:
+    def __validate_year(value: int) -> int:
         """Validates that a given year is a non-negative integer."""
-        if not isinstance(value, datetime):
+        if not isinstance(value, int):
             raise ValueError("A year must be an datetime object")
-        if value > datetime.now():
-            raise ValueError("A year cannot be in future")
+        if value < 0:
+            raise ValueError("A year cannot be negative")
+        if value > datetime.now().year:
+            raise ValueError("A year cannot be in the future")
         return value
 
 
@@ -80,11 +80,13 @@ class Library:
             raise ValueError("Book must be a Book object to be added to Library")
         self.books.add(book)
 
-    def __validate_book_title(self, book_title: str) -> str:
+    @staticmethod
+    def __validate_book_title(book_title: str) -> str:
         """Validates that a given book title is a non-empty string."""
         return Book.validate_title_and_author(book_title)
 
-    def __found_book_by_title(self, book_title: str, collection: set[Book]) -> Book | None:
+    @staticmethod
+    def __found_book_by_title(book_title: str, collection: set[Book]) -> Book | None:
         """
         Retrieves a `Book` object from the collection based on its title.
 
@@ -164,3 +166,28 @@ class Library:
     def borrowed_books_list(self):
         """Returns a list of titles of books that are currently borrowed by users."""
         return [book.title for book in self.borrowed_books]
+
+
+if __name__ == "__main__":
+    try:
+        first_book = Book("The First Book", "Random Author", 2000)
+        second_book = Book("The Second Book", "Another Random Author", 2001)
+        test_library = Library()
+        test_library.add_book(first_book)
+        test_library.add_book(second_book)
+        print(test_library.available_books_list)
+        print(test_library.borrowed_books_list)
+        test_library.borrow_book("The Second Book")
+        print(test_library.available_books_list)
+        print(test_library.borrowed_books_list)
+        test_library.return_book("The Second Book")
+        print(test_library.available_books_list)
+        print(test_library.borrowed_books_list)
+        test_library.remove_book("The Second Book")
+        print(test_library.available_books_list)
+        print(test_library.borrowed_books_list)
+        test_library.borrow_book("The Second Book")
+
+    except (ValueError, TypeError) as error:
+        print("An error happened:")
+        print(error)
