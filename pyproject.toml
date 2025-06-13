@@ -33,7 +33,18 @@ exclude =[
     "build",
     "dist",
     ".venv",
-    "*.pyc"
+    "*.pyc",
+    "Exercice02",
+    "Exercice03",
+    "Exercice04",
+    "Exercice05",
+    "Exercice06",
+    "Exercice07",
+    "Exercice08",
+    "Exercice09",
+    "Exercice10",
+    "Exercice11",
+    "Exercice12",
 ]
 
 
@@ -41,4 +52,5 @@ exclude =[
 dev = [
     "black>=25.1.0",
     "flake8>=7.2.0",
+    "flake8-pyproject>=1.2.3",
 ]
