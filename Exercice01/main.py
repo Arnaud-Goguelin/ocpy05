@@ -6,6 +6,7 @@ def ask_for_name():
         raise ValueError("Input must be a string")
     return name
 
+
 def ask_for_age():
     age = input("What is your age? ")
     if not age:
@@ -14,8 +15,10 @@ def ask_for_age():
         raise ValueError("Input must be a number")
     return age
 
+
 def print_greetings(name: str, age: str):
     print(f"Hello, I'm {name} and I'm {age} years old.")
+
 
 if __name__ == "__main__":
     try:
