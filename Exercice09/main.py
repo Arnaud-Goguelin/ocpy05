@@ -8,8 +8,8 @@ class Rectangle:
     """
 
     def __init__(self, width: int | float, length: int | float) -> None:
-        self.width = self.__validate_side(width)
-        self.length = self.__validate_side(length)
+        self.width: int | float = self.__validate_side(width)
+        self.length: int | float = self.__validate_side(length)
 
     def __setattr__(self, name: str, value: int | float) -> None:
         """Intercepts attribute assignment for validation."""

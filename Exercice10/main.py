@@ -8,8 +8,8 @@ class Person:
     """
 
     def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = self.__validate_age(age)
+        self.name: str = name
+        self.age: int = self.__validate_age(age)
 
     def __setattr__(self, name: str, value: str | int) -> None:
         """Intercepts attribute assignment for validation."""
@@ -49,7 +49,7 @@ class Employee(Person):
 
     def __init__(self, name: str, age: int, salary: float) -> None:
         super().__init__(name, age)
-        self.salary = salary
+        self.salary: float = salary
 
     def __setattr__(self, name: str, value: str | int | float) -> None:
         """Intercepts attribute assignment for validation."""
