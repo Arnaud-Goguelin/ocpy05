@@ -33,7 +33,9 @@ class Person:
         """Validates that a given name is a non-empty string."""
         if not isinstance(name, str):
             raise ValueError("Name must be a string")
-        if not name:
+        if name.isdigit():
+            raise ValueError("Name cannot be a number")
+        if not name.strip():
             raise ValueError("Name cannot be empty")
         return name
 
@@ -72,7 +74,7 @@ class Employee(Person):
 
 if __name__ == "__main__":
     try:
-        bob = Person("Bob", 33)
+        bob = Person(" ", 33)
         print(bob.__str__())
         tom_employee = Employee("Tom", 37, 1000.00)
         print(tom_employee.__str__())
