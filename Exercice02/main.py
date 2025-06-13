@@ -1,17 +1,16 @@
 def choose_a_student(students: dict[str : dict[str:int]]) -> str:
     """
-    Choose a student from a predefined list.
+    Choose a student from the predefined list.
 
-    This function asks the user to input the name of a student. It validates the
-    input, ensuring that it is not a numeric value and that it corresponds to an
-    existing student in the list. If these conditions are not met, appropriate
-    errors are raised. The function then returns the name of the chosen student
-    if valid.
+    Args:
+        students: Dictionary of student names and their grades
 
-    :raises ValueError: If the input is a digit.
-    :raises ValueError: If the input does not exist in the list of students.
-    :return: The name of the selected student.
-    :rtype: str
+    Returns:
+        Name of the selected student
+
+    Raises:
+        ValueError: If input is invalid or student not found
+
     """
     student = input("Please, choose a student:")
     if student.isdigit():
@@ -22,6 +21,17 @@ def choose_a_student(students: dict[str : dict[str:int]]) -> str:
 
 
 def display_grades(student: str, students: dict[str : dict[str:int]]) -> None:
+    """
+    Displays in terminal the grades of a student in all their subjects.
+
+    Args:
+        student: The name of the student whose grades are to be displayed.
+        students: A dictionary where the key is the student's name and the
+            value is another dictionary mapping subjects to grade values.
+
+    Returns:
+        None
+    """
     grades = students[student]
     print(f"{student}'s grades are:")
     for subject, grade in grades.items():
@@ -30,9 +40,20 @@ def display_grades(student: str, students: dict[str : dict[str:int]]) -> None:
 
 
 def calculate_average_grade(student: str, students: dict[str : dict[str:int]]) -> float:
+    """
+    Calculate the average grade for a specified student from a group of students.
+
+    Args:
+        student: The name of the student whose average grade is to be calculated.
+        students: A dictionary where keys are student names and values are
+            dictionaries. Each dictionary contains subject names as keys and their
+            respective grades as values.
+
+    Returns:
+        The average grade of the specified student as a float.
+    """
     grades = students[student]
-    total_grades = sum(grades.values())
-    average_grade = total_grades / len(grades.values())
+    average_grade = sum(grades.values()) / len(grades.values())
     return average_grade
 
 
