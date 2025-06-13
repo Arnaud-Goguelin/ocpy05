@@ -1,8 +1,8 @@
 class BankAccount:
 
     def __init__(self, account_holder: str, balance: float):
-        self.account_holder = account_holder
-        self.balance = balance
+        self.account_holder: str = account_holder
+        self.balance: float = balance
 
     def __setattr__(self, name: str, value: str | int) -> None:
         """Intercepts attribute assignment for validation."""
