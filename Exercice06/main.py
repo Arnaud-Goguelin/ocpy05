@@ -1,4 +1,4 @@
-def calculate_average(numbers_list: list[int | float]) -> float:
+def calculate_average(*numbers_list: list[int | float]) -> float:
     """
     Calculates the average of a list of numbers.
 
@@ -22,11 +22,11 @@ def calculate_average(numbers_list: list[int | float]) -> float:
 
 if __name__ == "__main__":
     try:
-        # numbers = [10, 20, 30, 40, 50]
+        numbers = 10, 20, 30, 40, 50
         # numbers = [30, 50, 80]
         # numbers = ["a", 50, 80]
-        numbers = []
-        average = calculate_average(numbers)
+        # numbers = []
+        average = calculate_average(*numbers)
         print("Average is :", average)
     except ValueError as error:
         print("An error happened:")
