@@ -1,6 +1,3 @@
-import inspect
-
-
 def log_decorator(wrapped_function: callable) -> callable:
     """
     A decorator that logs messages before and after the execution of a wrapped
@@ -23,11 +20,13 @@ def log_decorator(wrapped_function: callable) -> callable:
         raise TypeError("The wrapped function must be callable.")
 
     # checks if wrapped_function has args in is definition, not when it is called
-    signature = inspect.signature(wrapped_function)
-    if len(signature.parameters) > 0:
-        raise TypeError("The wrapped function must not have any arguments.")
+    # signature = inspect.signature(wrapped_function)
+    # if len(signature.parameters) > 0:
+    #     raise TypeError("The wrapped function must not have any arguments.")
 
-    def wrapper():
+    def wrapper(*args, **kwargs):
+        if args or kwargs:
+            raise TypeError("The wrapped function must not have any arguments.")
         print("--- Message before wrapped function ---")
         result = wrapped_function()
         print("--- Message after wrapped function ---")
