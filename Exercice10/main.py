@@ -47,8 +47,8 @@ class Person:
 
 class Employee(Person):
 
-    def __init__(self, name: str, age: int, salary: float) -> None:
-        super().__init__(name, age)
+    def __init__(self, salary: float, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
         self.salary: float = salary
 
     def __setattr__(self, name: str, value: str | int | float) -> None:

@@ -46,6 +46,9 @@ class Book:
             raise ValueError("A year cannot be in the future")
         return value
 
+    def __eq__(self, obj: "Book"):
+        return self.title == obj.title
+
 
 class Library:
     """
@@ -84,7 +87,7 @@ class Library:
     def __validate_book_title(book_title: str) -> str:
         """Validates that a given book title is a non-empty string."""
         return Book.validate_title_and_author(book_title)
-
+    
     @staticmethod
     def __found_book_by_title(book_title: str, collection: set[Book]) -> Book | None:
         """
